@@ -45,12 +45,12 @@ int main(int argc, char *argv[])
         gterm_filePtr = fopen(gterm, "w");
         if(gterm_filePtr == NULL)
         {
-            printf("%s%s", "Program terminated: Can't create ", gterm_ptr);
-            delete(gterm_ptr);
+            printf("%s%s", "Program terminated: Can't create ", gterm);
+            delete(gterm);
             return EXIT__FAILURE;
         }
         fprintf(gterm_filePtr, "%s", "gterm.executorMap\n{\n#Example\n\"c\" : \"gcc main.c\"\n\"cpp\" : \"g++ main.cpp\"}");
-        printf("%s%s", "gterm Created ", gterm_ptr);
+        printf("%s%s", "gterm Created ", gterm);
     }
 
     fdelete(gterm_filePtr);
@@ -64,25 +64,25 @@ int main(int argc, char *argv[])
 
     if (argc == 3 && !strcmp(argv[2], "configs"))
     {
-        insert_string(gterm_ptr, " ", 0);
-        insert_string(gterm_ptr, argv[1], 0);
-        system(gterm_ptr);
+        insert_string(gterm, " ", 0);
+        insert_string(gterm, argv[1], 0);
+        system(gterm);
         return EXIT__SUCCESS;
     }
 
       
-    gterm_filePtr = fopen(gterm_ptr, "r");
+    gterm_filePtr = fopen(gterm, "r");
     if (gterm_filePtr == NULL)
     {
-        printf("%s%s\n", "Program terminated: can't read ", gterm_ptr);
-        delete(gterm_ptr);
+        printf("%s%s\n", "Program terminated: can't read ", gterm);
+        delete(gterm);
         return EXIT__FAILURE;
     }
 
-    delete(gterm_ptr);
+    delete(gterm);
 
-    gterm_ptr = new $string;
-    if(gterm_ptr == NULL)
+    gterm = new $string;
+    if(gterm == NULL)
     {
         ____MALLOC_Err_msg;
         return EXIT__FAILURE;
@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
                 if (read == 0 && ch != '\n')
                 {
                     get__char[0] = ch;
-                    append_string(gterm_ptr, get__char);
+                    append_string(gterm, get__char);
                     ++i;
                 }
             }
@@ -145,17 +145,17 @@ int main(int argc, char *argv[])
                 if (count_wspaces < 2)
                 {
                     get__char[0] = ch;
-                    append_string(gterm_ptr, get__char);
+                    append_string(gterm, get__char);
                     ++i;
                 }
             }
         }
 
-        if (stage == 1 && !strcmp(gterm_ptr, "gterm.executorMap{"))
+        if (stage == 1 && !strcmp(gterm, "gterm.executorMap{"))
         {
-            delete(gterm_ptr);
-            gterm_ptr = new $string;
-            if(gterm_ptr == NULL)
+            delete(gterm);
+            gterm = new $string;
+            if(gterm == NULL)
             {
                 ____MALLOC_Err_msg;
                 return EXIT__FAILURE;
@@ -170,12 +170,12 @@ int main(int argc, char *argv[])
         {
             if (stage == 2 && i == 5)
             {
-                if (!strcmp(gterm_ptr, "\"c\":\""))
+                if (!strcmp(gterm, "\"c\":\""))
                 {
                     i = 0;
                     stage = 3;
-                    delete(gterm_ptr);
-                    gterm_ptr = new $string;
+                    delete(gterm);
+                    gterm = new $string;
                     if(gterm == NULL)
                     {
                         ____MALLOC_Err_msg;
