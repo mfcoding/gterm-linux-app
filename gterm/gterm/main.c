@@ -209,7 +209,7 @@ int main(int argc, char *argv[])
                 }
                 else if (argc == 4 && !strcmp(argv[2], "run"))
                 {
-                	system(gterm_ptr);
+                    system(gterm_ptr);
                     delete(gterm_ptr);
                     gterm_ptr = new $string;
                     if(gterm_ptr == NULL)
