@@ -11,38 +11,38 @@ int isDirExists(const char *path);
 
 int main(int argc, char *argv[])
 {
-    string gterm_ptr = new $string; 
+    string gterm = new $string; 
 
-    if(gterm_ptr == NULL)
+    if(gterm == NULL)
     {
         ____MALLOC_Err_msg;
         return EXIT__FAILURE;
     }
 
-    write_string(gterm_ptr, "/home/");
+    write_string(gterm, "/home/");
     struct passwd *uname = getpwuid(getuid());
-    append_string(gterm_ptr, uname->pw_name);
-    append_string(gterm_ptr, "/.gterm");
+    append_string(gterm, uname->pw_name);
+    append_string(gterm, "/.gterm");
 
 
-    if (!isDirExists(gterm_ptr))
+    if (!isDirExists(gterm))
     {
         system("cd ~;"
                "mkdir .gterm");
-        if(!isDirExists(gterm_ptr))
+        if(!isDirExists(gterm))
         {
-            printf("%s%s", "Program terminated: Can't create ", gterm_ptr);
-            delete(gterm_ptr);
+            printf("%s%s", "Program terminated: Can't create ", gterm);
+            delete(gterm);
             return EXIT__FAILURE;
         }
     }
 
-    append_string(gterm_ptr, "/configs.txt");
+    append_string(gterm, "/configs.txt");
 
-    FILE *gterm_filePtr = fopen(gterm_ptr, "r");
+    FILE *gterm_filePtr = fopen(gterm, "r");
     if(gterm_filePtr == NULL)
     {
-        gterm_filePtr = fopen(gterm_ptr, "w");
+        gterm_filePtr = fopen(gterm, "w");
         if(gterm_filePtr == NULL)
         {
             printf("%s%s", "Program terminated: Can't create ", gterm_ptr);
@@ -176,7 +176,7 @@ int main(int argc, char *argv[])
                     stage = 3;
                     delete(gterm_ptr);
                     gterm_ptr = new $string;
-                    if(gterm_ptr == NULL)
+                    if(gterm == NULL)
                     {
                         ____MALLOC_Err_msg;
                         return EXIT__FAILURE;
@@ -199,26 +199,26 @@ int main(int argc, char *argv[])
 
                 if (argc == 3 && !strcmp(argv[2], "build"))
                 {
-                    system(gterm_ptr);
+                    system(gterm);
                 }
                 else if (argc == 3 && !strcmp(argv[2], "run"))
                 {
-                    system(gterm_ptr);
+                    system(gterm);
                     system("gnome-terminal -- gterm0 1a c run");
                 }
                 else if (argc == 4 && !strcmp(argv[2], "run"))
                 {
-                    system(gterm_ptr);
-                    delete(gterm_ptr);
-                    gterm_ptr = new $string;
-                    if(gterm_ptr == NULL)
+                    system(gterm);
+                    delete(gterm);
+                    gterm = new $string;
+                    if(gterm == NULL)
                     {
                         ____MALLOC_Err_msg;
                         return EXIT__FAILURE;
                     }
-                    write_string(gterm_ptr, "gnome-terminal -- gterm0 1b c run .//"); 
-                    append_string(gterm_ptr, argv[3]);
-                    system(gterm_ptr);
+                    write_string(gterm, "gnome-terminal -- gterm0 1b c run .//"); 
+                    append_string(gterm, argv[3]);
+                    system(gterm);
                 }
                 else
                 {
@@ -234,7 +234,7 @@ int main(int argc, char *argv[])
         }
     } // While loop ends here
 
-    delete(gterm_ptr);
+    delete(gterm);
     fdelete(gterm_filePtr);
 
     return EXIT__SUCCESS;
