@@ -15,37 +15,37 @@ int main(int argc, char *argv[])
 {
     system("echo \"\033]0;gterm\a\"; printf \"\033[1A\"");
     
-    string gterm0_ptr = new $string; 
+    string gterm0 = new $string; 
 
-    if(gterm0_ptr == NULL)
+    if(gterm0 == NULL)
     {
         ____MALLOC_Err_msg;
         return EXIT__FAILURE;
     }
     
-    write_string(gterm0_ptr, "/home/");
+    write_string(gterm0, "/home/");
     struct passwd *uname = getpwuid(getuid());
-    append_string(gterm0_ptr, uname->pw_name);
-    append_string(gterm0_ptr, "/.gterm");
-    append_string(gterm0_ptr, "/user_Exstat.txt"); 
+    append_string(gterm0, uname->pw_name);
+    append_string(gterm0, "/.gterm");
+    append_string(gterm0, "/user_Exstat.txt"); 
 
 
     if(argc == 4 && !strcmp(argv[0], "gterm0") && !strcmp(argv[1], "1a") &&
                     !strcmp(argv[2], "c") && !strcmp(argv[3], "run"))
     {
-        insert_string(gterm0_ptr, "./a.out; echo $? > ", 0);
-        run(gterm0_ptr, gterm0_ptr+19);
+        insert_string(gterm0, "./a.out; echo $? > ", 0);
+        run(gterm0, gterm0+19);
     }
     else if(argc == 5 && !strcmp(argv[0], "gterm0") && !strcmp(argv[1], "1b") &&
                          !strcmp(argv[2], "c") && !strcmp(argv[3], "run"))
     {
-        insert_string(gterm0_ptr, " echo $? > ", 0);
-        insert_string(gterm0_ptr, ";", 0);
-        insert_string(gterm0_ptr, argv[4], 0);
-        run(gterm0_ptr, gterm0_ptr+strlen(argv[4])+12);
+        insert_string(gterm0, " echo $? > ", 0);
+        insert_string(gterm0, ";", 0);
+        insert_string(gterm0, argv[4], 0);
+        run(gterm0, gterm0+strlen(argv[4])+12);
     }
 
-    delete(gterm0_ptr);
+    delete(gterm0);
 
     return EXIT__SUCCESS;
 }
