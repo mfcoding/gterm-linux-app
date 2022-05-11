@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
         printf("%s%s", "gterm Created ", gterm_ptr);
     }
 
-    fclose(gterm_filePtr);
+    fdelete(gterm_filePtr);
     gterm_filePtr = NULL;
 
     if (argc == 1 && !strcmp(argv[0], "gterm"))
