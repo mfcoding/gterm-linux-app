@@ -15,7 +15,7 @@ int MAX_MALLOC;
 
 #define append_string(des, src) \
 des=(string)realloc((string)des, MAX_MALLOC=strlen(des)+strlen(src)+1); \
-if(des!=NULL){ strcpy(des+strlen(des), src); }else{____MALLOC_Err_msg; return EXIT__FAILURE;}
+if(des!=NULL){ strcpy(des+strlen(des), src); }else{____MALLOC_Err_msg; exit(EXIT__FAILURE);}
 
 #define write_string(des, src) \
 if(strlen(des)+strlen(src) < MAX_MALLOC){ strcpy(des+strlen(des), src);}else{ \
@@ -28,7 +28,7 @@ ____c = i; src = realloc((string)src, MAX_MALLOC=strlen(src)+strlen(ins)+1); \
 if(src!=NULL){ptr = realloc((string)ptr,  MAX_MALLOC-____c); \
 if(ptr!=NULL){strcpy(ptr, src+____c); strcpy(src+____c, ins); \
 strcpy(src+____c+strlen(ins), ptr); \
-delete(ptr); ptr=NULL;}else{____MALLOC_Err_msg; return EXIT__FAILURE;}}else{____MALLOC_Err_msg; return EXIT__FAILURE;}
+delete(ptr); ptr=NULL;}else{____MALLOC_Err_msg; exit(EXIT__FAILURE);}}else{____MALLOC_Err_msg; exit(EXIT__FAILURE);}
 
 
 #define delete(ptr) ptr!=NULL?free(ptr):0;
