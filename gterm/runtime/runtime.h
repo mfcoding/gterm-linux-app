@@ -1,7 +1,5 @@
 #ifndef RUNTIME_H
 #define RUNTIME_H
-#include <malloc.h>
-#include <string.h>
 
 typedef char* string;
 
