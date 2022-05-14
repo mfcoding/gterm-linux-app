@@ -91,10 +91,11 @@ void run(const char *cmd, const char *fpath)
     clock_gettime (CLOCK_REALTIME, &end_t);
     //Calculate the delta between two timestamps (time spent)
     time_spent =1000000000*(end_t.tv_sec - start_t.tv_sec)+(end_t.tv_nsec - start_t.tv_nsec);
-    //print time spent per second
-
+    
+    
     string fcontnt = fcontent(fpath);
 
+    //finally and print time spent per second
     if(fcontnt != NULL)
     {
         printf("\n\nProcess returned (%s)      Execution time : %.3lf s\n\033[1;33mPress ENTER to continue.\n\033[0m", fcontnt, time_spent / 1000000000);
