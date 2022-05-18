@@ -184,6 +184,7 @@ int main(int argc, char *argv[])
                         ____MALLOC_Err_msg;
                         return EXIT__FAILURE;
                     }
+                    gterm[0] = 0;
                 }
                 else
                 {
