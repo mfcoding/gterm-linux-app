@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
         ____MALLOC_Err_msg;
         return EXIT__FAILURE;
     }
-    gterm[0] = 0; 
+    gterm0[0] = 0; 
     
     write_string(gterm0, "/home/");
     struct passwd *uname = getpwuid(getuid());
