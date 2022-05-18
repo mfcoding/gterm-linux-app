@@ -18,7 +18,6 @@ int main(int argc, char *argv[])
         ____MALLOC_Err_msg;
         return EXIT__FAILURE;
     }
-    gterm[0] = 0;
 
     write_string(gterm, "/home/");
     struct passwd *uname = getpwuid(getuid());
@@ -88,7 +87,6 @@ int main(int argc, char *argv[])
         ____MALLOC_Err_msg;
         return EXIT__FAILURE;
     }
-    gterm[0] = 0;
     
     int ch = 0, i = 0, count_wspaces = 0, read = 0, stage = 1;
     char get__char[2] = {' ', '\0'};
@@ -105,12 +103,9 @@ int main(int argc, char *argv[])
                 {
                     read = 1;
                 }
-                else if (ch == '\n')
+                else if (ch == '\n' && read == 1)
                 {
-                    if(read == 1)
-                    {
-                        read = 0;
-                    }
+                    read = 0;
                 }
                 else if (ch == EOF)
                 {
@@ -162,7 +157,6 @@ int main(int argc, char *argv[])
                 ____MALLOC_Err_msg;
                 return EXIT__FAILURE;
             }
-            gterm[0] = 0;
             i = 0;
             stage = 2;
         }
@@ -184,7 +178,6 @@ int main(int argc, char *argv[])
                         ____MALLOC_Err_msg;
                         return EXIT__FAILURE;
                     }
-                    gterm[0] = 0;
                 }
                 else
                 {
@@ -220,7 +213,6 @@ int main(int argc, char *argv[])
                         ____MALLOC_Err_msg;
                         return EXIT__FAILURE;
                     }
-                    gterm[0] = 0;
                     write_string(gterm, "gnome-terminal -- gterm0 1b c run .//"); 
                     append_string(gterm, argv[3]);
                     system(gterm);
