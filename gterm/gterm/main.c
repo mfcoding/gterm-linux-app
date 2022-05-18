@@ -50,8 +50,8 @@ int main(int argc, char *argv[])
             delete(gterm);
             return EXIT__FAILURE;
         }
-        fprintf(gterm_filePtr, "%s", "gterm.executorMap\n{\n#Example\n\"c\" : \"gcc main.c\"\n\"cpp\" : \"g++ main.cpp\"}");
-        printf("%s%s", "gterm Created ", gterm);
+        fprintf(gterm_filePtr, "%s", "gterm.executorMap\n{\n#Example\n\"c\" : \"gcc main.c\"\n\"cpp\" : \"g++ main.cpp\"\n}");
+        printf("%s%s\n", "gterm Created ", gterm);
     }
 
     fdelete(gterm_filePtr);
