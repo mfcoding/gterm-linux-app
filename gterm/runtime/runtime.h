@@ -15,9 +15,7 @@ int MAX_MALLOC;
 des=(string)realloc((string)des, MAX_MALLOC=strlen(des)+strlen(src)+1); \
 if(des!=NULL){ strcpy(des+strlen(des), src); }else{____MALLOC_Err_msg; exit(EXIT__FAILURE);}
 
-#define write_string(des, src) \
-if(strlen(des)+strlen(src) < MAX_MALLOC){ strcpy(des+strlen(des), src);}else{ \
-append_string(des, src); }
+#define write_string(des, src) append_string(des, src)
 
 int ____c;
 char *ptr;
