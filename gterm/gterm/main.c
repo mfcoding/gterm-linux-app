@@ -192,7 +192,7 @@ int main(int argc, char *argv[])
                     	gterm = new $string;
                     	if(gterm == NULL)
                     	{
-                        	____MALLOC_Err_msg;
+                       	   ____MALLOC_Err_msg;
                      	   return_state = EXIT__FAILURE;
                            break;
                     	}
