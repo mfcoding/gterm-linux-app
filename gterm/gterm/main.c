@@ -188,7 +188,7 @@ int main(int argc, char *argv[])
                     {	
                         i = 0;
                         read = 1;
-                	delete(gterm);
+                		delete(gterm);
                     	gterm = new $string;
                     	if(gterm == NULL)
                     	{
