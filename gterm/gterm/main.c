@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
         return EXIT__FAILURE;
     }
     
-    int ch = 0, i = 0, count_wspaces = 0, read = 0, stage = 1;
+    int ch = 0, i = 0, count_wspaces = 0, read = 0, stage = 1, return_state = EXIT__SUCCESS;
     char get__char[2] = {' ', '\0'};
 
 
@@ -155,19 +155,21 @@ int main(int argc, char *argv[])
             if(gterm == NULL)
             {
                 ____MALLOC_Err_msg;
-                return EXIT__FAILURE;
+                return_state = EXIT__FAILURE;
+                break;
             }
             i = 0;
             stage = 2;
         }
 
-        /* *** Clang *** */
+         /* *** C,C++ *** */
 
-        if (!strcmp(argv[1], "c"))
+        if (!strcmp(argv[1], "c") || !strcmp(argv[1], "cpp"))
         {
-            if (stage == 2 && i == 5)
+            if (stage == 2)
             {
-                if (!strcmp(gterm, "\"c\":\""))
+                if ((!strcmp(argv[1], "c")   && !strcmp(gterm, "\"c\":\"") && i == 5 )     || 
+                    (!strcmp(argv[1], "cpp") && !strcmp(gterm, "\"cpp\":\"") && i == 7 ))
                 {
                     i = 0;
                     stage = 3;
@@ -176,13 +178,25 @@ int main(int argc, char *argv[])
                     if(gterm == NULL)
                     {
                         ____MALLOC_Err_msg;
-                        return EXIT__FAILURE;
+                        return_state = EXIT__FAILURE;
+                        break;
                     }
                 }
                 else
-                {
-                    read = 1;
-                    i = 0;
+                {	
+					if((!strcmp(argv[1], "c") && i == 5) || (!strcmp(argv[1], "cpp") && i == 7))
+                	{	
+                		i = 0;
+                		read = 1;
+                		delete(gterm);
+                    	gterm = new $string;
+                    	if(gterm == NULL)
+                    	{
+                        	____MALLOC_Err_msg;
+                     	   return_state = EXIT__FAILURE;
+                           break;
+                    	}
+                	}
                 }
             }
 
@@ -211,7 +225,8 @@ int main(int argc, char *argv[])
                     if(gterm == NULL)
                     {
                         ____MALLOC_Err_msg;
-                        return EXIT__FAILURE;
+                        return_state = EXIT__FAILURE;
+                        break;
                     }
                     write_string(gterm, "gnome-terminal -- gterm0 1b c run .//"); 
                     append_string(gterm, argv[3]);
@@ -234,7 +249,7 @@ int main(int argc, char *argv[])
     delete(gterm);
     fdelete(gterm_filePtr);
 
-    return EXIT__SUCCESS;
+    return return_state;
 }
 
 int isDirExists(const char *path)
