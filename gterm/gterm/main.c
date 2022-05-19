@@ -184,7 +184,7 @@ int main(int argc, char *argv[])
                 }
                 else
                 {	
-					if((!strcmp(argv[1], "c") && i == 5) || (!strcmp(argv[1], "cpp") && i == 7))
+			if((!strcmp(argv[1], "c") && i == 5) || (!strcmp(argv[1], "cpp") && i == 7))
                 	{	
                 		i = 0;
                 		read = 1;
