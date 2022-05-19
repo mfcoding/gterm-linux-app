@@ -188,7 +188,7 @@ int main(int argc, char *argv[])
                     {	
                         i = 0;
                         read = 1;
-                	delete(gterm);
+			delete(gterm);
                     	gterm = new $string;
                     	if(gterm == NULL)
                     	{
@@ -207,7 +207,7 @@ int main(int argc, char *argv[])
                     printf("%s\n", "Missing option");
                     break;
                 }
-		
+				
 		printf("\033[0;34m%s\033[0m\n", gterm);
 
                 if (argc == 3 && !strcmp(argv[2], "build"))
