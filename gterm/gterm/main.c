@@ -97,29 +97,27 @@ int main(int argc, char *argv[])
         ch = fgetc(gterm_filePtr);
         if (stage != 3)
         {
-            if (ch == ' ' || ch == '#' || ch == '\n' || ch == EOF)
+            if (ch == '#')
             {
-                if (ch == '#')
-                {
-                    read = 1;
-                }
-                else if (ch == '\n' && read == 1)
-                {
-                    read = 0;
-                }
-                else if (ch == EOF)
-                {
-                    break;
-                }
+                read = 1;
             }
-            else
+            else if (ch == '\n' && read == 1)
             {
-                if (read == 0 && ch != '\n')
-                {
-                    get__char[0] = ch;
-                    append_string(gterm, get__char);
-                    ++i;
-                }
+                read = 0;
+            }
+            else if(ch == ' ')
+            {
+            	ch = '\n';
+            }
+            else if (ch == EOF)
+            {
+                break;
+            }
+            if (read == 0 && ch != '\n')
+            {
+            	get__char[0] = ch;
+                append_string(gterm, get__char);
+                ++i;
             }
         }
         else
