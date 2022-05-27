@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     if(gterm0 == NULL)
     {
-        ____MALLOC_Err_msg;
+        MALLOC_ERROR_MSG;
         return EXIT__FAILURE;
     }
     
