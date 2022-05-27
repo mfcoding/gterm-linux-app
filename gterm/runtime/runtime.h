@@ -4,7 +4,7 @@
 typedef char* string;
 
 int MAX_MALLOC;
-#define new 0
+#define new 1
 #define $string ^!new?new_string(new):0; 
 #define new_string(n) (string)calloc(n,MAX_MALLOC=sizeof(char))
 #define MALLOC_ERROR_MSG puts("Memory allocation failed");
