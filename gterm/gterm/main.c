@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
     if(gterm == NULL)
     {
-        ____MALLOC_Err_msg;
+        MALLOC_ERROR_MSG;
         return EXIT__FAILURE;
     }
 
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
     gterm = new $string;
     if(gterm == NULL)
     {
-        ____MALLOC_Err_msg;
+        MALLOC_ERROR_MSG;
         return EXIT__FAILURE;
     }
     
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
             gterm = new $string;
             if(gterm == NULL)
             {
-                ____MALLOC_Err_msg;
+                MALLOC_ERROR_MSG;
                 return_state = EXIT__FAILURE;
                 break;
             }
@@ -175,7 +175,7 @@ int main(int argc, char *argv[])
                     gterm = new $string;
                     if(gterm == NULL)
                     {
-                        ____MALLOC_Err_msg;
+                        MALLOC_ERROR_MSG;
                         return_state = EXIT__FAILURE;
                         break;
                     }
@@ -190,7 +190,7 @@ int main(int argc, char *argv[])
                     	gterm = new $string;
                     	if(gterm == NULL)
                     	{
-                       	   ____MALLOC_Err_msg;
+                       	   MALLOC_ERROR_MSG;
                      	   return_state = EXIT__FAILURE;
                            break;
                     	}
@@ -224,7 +224,7 @@ int main(int argc, char *argv[])
                     gterm = new $string;
                     if(gterm == NULL)
                     {
-                        ____MALLOC_Err_msg;
+                        MALLOC_ERROR_MSG;
                         return_state = EXIT__FAILURE;
                         break;
                     }
