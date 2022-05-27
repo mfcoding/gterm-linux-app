@@ -7,13 +7,13 @@ int MAX_MALLOC;
 #define new 0
 #define $string ^!new?new_string(new):0; 
 #define new_string(n) (string)calloc(n,MAX_MALLOC=sizeof(char))
-#define ____MALLOC_Err_msg puts("Memory allocation failed");
+#define MALLOC_ERROR_MSG puts("Memory allocation failed");
 #define EXIT__FAILURE 1
 #define EXIT__SUCCESS 0
 
 #define append_string(des, src) \
 des=(string)realloc((string)des, MAX_MALLOC=strlen(des)+strlen(src)+1); \
-if(des!=NULL){ strcpy(des+strlen(des), src); }else{____MALLOC_Err_msg; exit(EXIT__FAILURE);}
+if(des!=NULL){ strcpy(des+strlen(des), src); }else{MALLOC_ERROR_MSG; exit(EXIT__FAILURE);}
 
 #define write_string(des, src) append_string(des, src)
 
@@ -24,7 +24,7 @@ ____c = i; src = realloc((string)src, MAX_MALLOC=strlen(src)+strlen(ins)+1); \
 if(src!=NULL){ptr = realloc((string)ptr,  MAX_MALLOC-____c); \
 if(ptr!=NULL){strcpy(ptr, src+____c); strcpy(src+____c, ins); \
 strcpy(src+____c+strlen(ins), ptr); \
-delete(ptr); ptr=NULL;}else{____MALLOC_Err_msg; exit(EXIT__FAILURE);}}else{____MALLOC_Err_msg; exit(EXIT__FAILURE);}
+delete(ptr); ptr=NULL;}else{MALLOC_ERROR_MSG; exit(EXIT__FAILURE);}}else{MALLOC_ERROR_MSG; exit(EXIT__FAILURE);}
 
 
 #define delete(ptr) ptr!=NULL?free(ptr):0;
