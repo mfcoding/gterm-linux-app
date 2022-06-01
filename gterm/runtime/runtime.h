@@ -26,6 +26,8 @@ if(ptr!=NULL){strcpy(ptr, src+____c); strcpy(src+____c, ins); \
 strcpy(src+____c+strlen(ins), ptr); \
 delete(ptr); ptr=NULL;}else{MALLOC_ERROR_MSG; exit(EXIT__FAILURE);}}else{MALLOC_ERROR_MSG; exit(EXIT__FAILURE);}
 
+#define ISNULL_return(s)            if(s == NULL){ MALLOC_ERROR_MSG; return EXIT__FAILURE; }
+#define ISNULL_break(s, rstate)     if(s == NULL){ MALLOC_ERROR_MSG; rstate = EXIT__FAILURE;  break; } 
 
 #define delete(ptr) ptr!=NULL?free(ptr):0;
 #define fdelete(ptr) ptr!=NULL?fclose(ptr):0;
