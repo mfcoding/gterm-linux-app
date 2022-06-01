@@ -13,11 +13,7 @@ int main(int argc, char *argv[])
 {
     string gterm = new $string; 
 
-    if(gterm == NULL)
-    {
-        MALLOC_ERROR_MSG;
-        return EXIT__FAILURE;
-    }
+    ISNULL_return(gterm);
 
     write_string(gterm, "/home/");
     struct passwd *uname = getpwuid(getuid());
@@ -82,11 +78,7 @@ int main(int argc, char *argv[])
     delete(gterm);
 
     gterm = new $string;
-    if(gterm == NULL)
-    {
-        MALLOC_ERROR_MSG;
-        return EXIT__FAILURE;
-    }
+    ISNULL_return(gterm);
     
     int ch = 0, i = 0, count_wspaces = 0, read = 0, stage = 1, return_state = EXIT__SUCCESS;
     char get__char[2] = {' ', '\0'};
@@ -150,12 +142,7 @@ int main(int argc, char *argv[])
         {
             delete(gterm);
             gterm = new $string;
-            if(gterm == NULL)
-            {
-                MALLOC_ERROR_MSG;
-                return_state = EXIT__FAILURE;
-                break;
-            }
+            ISNULL_break(gterm, return_state);
             i = 0;
             stage = 2;
         }
@@ -173,12 +160,7 @@ int main(int argc, char *argv[])
                     stage = 3;
                     delete(gterm);
                     gterm = new $string;
-                    if(gterm == NULL)
-                    {
-                        MALLOC_ERROR_MSG;
-                        return_state = EXIT__FAILURE;
-                        break;
-                    }
+                    ISNULL_break(gterm, return_state);
                 }
                 else
                 {	
@@ -188,12 +170,7 @@ int main(int argc, char *argv[])
                         read = 1;
 			delete(gterm);
                     	gterm = new $string;
-                    	if(gterm == NULL)
-                    	{
-                       	   MALLOC_ERROR_MSG;
-                     	   return_state = EXIT__FAILURE;
-                           break;
-                    	}
+                    	ISNULL_break(gterm, return_state);
                     }
                 }
             }
@@ -222,12 +199,7 @@ int main(int argc, char *argv[])
                     system(gterm);
                     delete(gterm);
                     gterm = new $string;
-                    if(gterm == NULL)
-                    {
-                        MALLOC_ERROR_MSG;
-                        return_state = EXIT__FAILURE;
-                        break;
-                    }
+                    ISNULL_break(gterm, return_state);
                     write_string(gterm, "gnome-terminal -- gterm0 1b c run .//"); 
                     append_string(gterm, argv[3]);
                     system(gterm);
