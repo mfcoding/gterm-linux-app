@@ -17,11 +17,7 @@ int main(int argc, char *argv[])
     
     string gterm0 = new $string; 
 
-    if(gterm0 == NULL)
-    {
-        MALLOC_ERROR_MSG;
-        return EXIT__FAILURE;
-    }
+    ISNULL_return(gterm0);
     
     write_string(gterm0, "/home/");
     struct passwd *uname = getpwuid(getuid());
